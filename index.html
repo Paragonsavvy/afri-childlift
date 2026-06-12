@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Afri ChildLift</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <h1>Afri ChildLift Dashboard</h1>
+
+  <p>
+    Transparent real-time impact tracking for education, food,
+    healthcare, and child support across Africa.
+  </p>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <h3>1,250+</h3>
+      <span>Children Helped</span>
+    </div>
+
+    <div class="stat">
+      <h3>8</h3>
+      <span>Countries</span>
+    </div>
+
+    <div class="stat">
+      <h3>$12,450</h3>
+      <span>Total Impact</span>
+    </div>
+  </div>
+</header>
+
+<!-- DASHBOARD STATS -->
+<section class="stats-grid">
+  <div class="card">
+    <h2>$12,450</h2>
+    <p>Total Donations</p>
+  </div>
+
+  <div class="card">
+    <h2>1,250</h2>
+    <p>Lives Impacted</p>
+  </div>
+
+  <div class="card">
+    <h2>4</h2>
+    <p>Active Programs</p>
+  </div>
+</section>
+
+<!-- IMPACT SECTION -->
+<section class="impact">
+  <h2>Live Impact Progress</h2>
+
+  <div class="progress-item">
+    <label>Education</label>
+    <div class="bar"><div style="width:70%"></div></div>
+  </div>
+
+  <div class="progress-item">
+    <label>Food Relief</label>
+    <div class="bar"><div style="width:55%"></div></div>
+  </div>
+
+  <div class="progress-item">
+    <label>Healthcare</label>
+    <div class="bar"><div style="width:80%"></div></div>
+  </div>
+</section>
+
+<!-- CAUSES -->
+<section class="causes">
+  <h2>Our Causes</h2>
+
+  <div class="causes-grid">
+
+    <div class="card" onclick="selectCause(2000,'education',this)">
+      <h3>Education</h3>
+      <p>Build learning opportunities</p>
+    </div>
+
+    <div class="card" onclick="selectCause(1500,'food',this)">
+      <h3>Food</h3>
+      <p>Feed hungry children</p>
+    </div>
+
+    <div class="card" onclick="selectCause(3000,'healthcare',this)">
+      <h3>Health</h3>
+      <p>Medical support</p>
+    </div>
+
+    <div class="card" onclick="selectCause(2500,'support',this)">
+      <h3>Support</h3>
+      <p>General child assistance</p>
+    </div>
+
+  </div>
+
+  <!-- DONATION BUTTON -->
+  <div class="cta">
+    <button id="continueBtn" onclick="continueDonation()" disabled>
+      Support a Child Today
+    </button>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story">
+  <h2>Making a Difference</h2>
+  <p>
+    Every donation helps provide hope, education,
+    healthcare, and a brighter future for children
+    across Africa. Transparency builds trust.0
+  </p>
+</section>
+
+<!-- SCRIPT -->
+<script src="app.js"></script>
+
+</body>
+</html>

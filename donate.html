@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate - Afri ChildLift</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background: #0a6b3d;
+      color: white;
+      padding: 30px 15px;
+    }
+
+    section {
+      margin-top: 40px;
+      padding: 20px;
+    }
+
+    #amount {
+      font-size: 40px;
+      margin: 10px 0;
+    }
+
+    #purpose {
+      font-size: 18px;
+      color: #333;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background: #0a6b3d;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    button:disabled {
+      background: gray;
+      cursor: not-allowed;
+    }
+
+    #message {
+      margin-top: 20px;
+      color: #444;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Complete Your Donation</h1>
+  <p>You're one step away from helping a child.</p>
+</header>
+
+<section>
+
+  <h2 id="amount">Loading...</h2>
+  <p id="purpose">Loading...</p>
+
+  <button id="payBtn">Donate Now</button>
+
+  <p id="message"></p>
+
+</section>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+const cause = params.get("cause") || "General Support";
+let amount = Number(params.get("amount"));
+
+if (!amount || amount < 100) {
+  amount = 1000;
+}
+
+const amountEl = document.getElementById("amount");
+const purposeEl = document.getElementById("purpose");
+const messageEl = document.getElementById("message");
+const payBtn = document.getElementById("payBtn");
+
+amountEl.innerText = "₦" + amount.toLocaleString();
+purposeEl.innerText = "Supporting: " + cause;
+
+let isProcessing = false;
+
+payBtn.onclick = function () {
+
+  if (isProcessing) return;
+
+  if (typeof PaystackPop === "undefined") {
+    messageEl.innerText = "Payment system not ready. Please refresh and try again.";
+    return;
+  }
+
+  isProcessing = true;
+  payBtn.disabled = true;
+  messageEl.innerText = "Initializing payment...";
+
+  let handler = PaystackPop.setup({
+
+    key: "pk_live_d8576ac6e52cf79eabaf079dc142a7241eda62f6",
+
+    email: "itssavior45@gmail.com",
+
+    amount: amount * 100,
+
+    currency: "NGN",
+
+    metadata: {
+      cause: cause
+    },
+
+    callback: function(response) {
+      messageEl.innerText =
+        "Payment successful 🎉 Ref: " + response.reference;
+
+      isProcessing = false;
+      payBtn.disabled = false;
+    },
+
+    onClose: function() {
+      messageEl.innerText = "Payment cancelled.";
+
+      isProcessing = false;
+      payBtn.disabled = false;
+    }
+
+  });
+
+  handler.openIframe();
+};
+</script>
+
+</body>
+</html>
